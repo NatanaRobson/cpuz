@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./vueCpu.js" type="module"></script>
+</head>
+
+<body>
+
+    <main id="app">
+
+        <div id="top">
+            <h1>List of {{ cpuQt }} CPUs manufactured On Mulhouse</h1>
+        </div>
+
+        <div id="list">
+
+            <article class="cpu" v-for="c of cpuList">
+                <section class="model">
+                    <h4 v-if="c.brand == 'AMD'">{{ c.brand }} {{ c.family }} {{ c.model }} <img id="amd"
+                            src="./img/amd.svg" alt="">
+                    </h4>
+                    <h4 v-else>{{ c.brand }} {{ c.family }} {{ c.model }} <img id="intel" src="./img/intel.svg" alt="">
+                    </h4>
+                    <img src="" alt="">
+                </section>
+                <section><span class="attribute">ID :</span>{{ c.id }}</section>
+                <section><span class="attribute">Frequency :</span>{{ c.ghz }}</section>
+                <section><span class="attribute">Price :</span>{{ c.price }}</section>
+                <section><span class="attribute">Stock :</span></section>
+            </article>
+
+        </div>
+        <div>
+            <section class="instruction">1. Select a CPU</section>
+            <section class="instruction">2. Edit the number of units in stock</section>
+        </div>
+
+        <div>
+
+            <select name="cpus" id="choose">
+                <option v-for="c of cpuList" :value="c.model">{{ c.model }}</option>
+            </select>
+
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
